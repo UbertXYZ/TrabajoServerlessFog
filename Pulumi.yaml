@@ -1,0 +1,10 @@
+name: TrabajoServerlessFog
+description: Solucion con diferentes servicios Serverless Computing y de Fog Computing
+runtime:
+  name: nodejs
+  options:
+    packagemanager: npm
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: https://github.com/pulumi/templates/tree/master/aws-typescript

@@ -1,0 +1,15 @@
+{
+    "name": "TrabajoServerlessFog",
+    "main": "index.ts",
+    "devDependencies": {
+        "@types/node": "^18",
+        "typescript": "^5.0.0"
+    },
+    "dependencies": {
+        "@pulumi/aws": "^7.0.0",
+        "@pulumi/awsx": "^3.0.0",
+        "@pulumi/kubernetes": "^4.24.1",
+        "@pulumi/pulumi": "^3.113.0",
+        "aws-sdk": "^2.1693.0"
+    }
+}
