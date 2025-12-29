@@ -1,0 +1,24 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ec2:Describe*",
+        "elasticloadbalancing:*",
+        "iam:CreateServiceLinkedRole",
+        "cognito-idp:DescribeUserPoolClient",
+        "waf-regional:GetWebACLForResource",
+        "waf-regional:GetWebACL",
+        "waf:GetWebACL",
+        "shield:GetSubscriptionState",
+        "shield:DescribeProtection",
+        "shield:CreateProtection",
+        "shield:DeleteProtection",
+        "wafv2:GetWebACLForResource",
+        "wafv2:GetWebACL"
+      ],
+      "Resource": "*"
+    }
+  ]
+}

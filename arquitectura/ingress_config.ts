@@ -5,11 +5,13 @@ export const ingress = new k8s.networking.v1.Ingress(
   "fog-ingress",
   {
     metadata: {
+      namespace: "default",
       annotations: {
         "kubernetes.io/ingress.class": "alb",
         "alb.ingress.kubernetes.io/scheme": "internal",
         "alb.ingress.kubernetes.io/target-type": "ip",
         "alb.ingress.kubernetes.io/listen-ports": '[{"HTTP":80}]',
+        "alb.ingress.kubernetes.io/load-balancer-name": "fog-alb",
       },
     },
     spec: {
@@ -43,5 +45,7 @@ export const ingress = new k8s.networking.v1.Ingress(
       ],
     },
   },
-  { provider: k8sProvider }
+  {
+    provider: k8sProvider,
+  }
 );
