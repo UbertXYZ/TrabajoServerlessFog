@@ -12,13 +12,19 @@ export const publicSubnetA = new aws.ec2.Subnet("fogPublicSubnetA", {
     vpcId: fogVpc.id,
     cidrBlock: "10.0.10.0/24",
     availabilityZone: "us-east-1a",
-    tags: { Name: "fogPublicSubnetA" },
+    tags: {
+        Name: "fogPublicSubnetA",
+        "kubernetes.io/role/elb": "1",
+     },
 });
 export const publicSubnetB = new aws.ec2.Subnet("fogPublicSubnetB", {
     vpcId: fogVpc.id,
     cidrBlock: "10.0.11.0/24",
     availabilityZone: "us-east-1b",
-    tags: { Name: "fogPublicSubnetB" },
+    tags: {
+        Name: "fogPublicSubnetB",
+        "kubernetes.io/role/elb": "1",
+     },
 });
 export const privateSubnetA = new aws.ec2.Subnet("fogPrivateSubnetA", {
     vpcId: fogVpc.id,

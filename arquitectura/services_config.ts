@@ -1,4 +1,6 @@
 import * as k8s from "@pulumi/kubernetes";
+import * as pulumi from "@pulumi/pulumi";
+import { publicSubnetA, publicSubnetB } from "../vpc/fogvpc";
 import { k8sProvider } from "./kube_config";
 import "./workers_config";
 export const fog01Service = new k8s.core.v1.Service(
@@ -9,6 +11,7 @@ export const fog01Service = new k8s.core.v1.Service(
       annotations: {
         "service.beta.kubernetes.io/aws-load-balancer-type": "nlb",
         "service.beta.kubernetes.io/aws-load-balancer-internal": "false",
+        "service.beta.kubernetes.io/aws-load-balancer-subnets": pulumi.interpolate`${publicSubnetA.id},${publicSubnetB.id}`,
       },
     },
     spec: {
@@ -27,6 +30,7 @@ export const fog02Service = new k8s.core.v1.Service(
       annotations: {
         "service.beta.kubernetes.io/aws-load-balancer-type": "nlb",
         "service.beta.kubernetes.io/aws-load-balancer-internal": "false",
+        "service.beta.kubernetes.io/aws-load-balancer-subnets": pulumi.interpolate`${publicSubnetA.id},${publicSubnetB.id}`,
       },
     },
     spec: {
