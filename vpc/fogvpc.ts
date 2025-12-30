@@ -24,13 +24,18 @@ export const privateSubnetA = new aws.ec2.Subnet("fogPrivateSubnetA", {
     vpcId: fogVpc.id,
     cidrBlock: "10.0.1.0/24",
     availabilityZone: "us-east-1a",
-    tags: { Name: "fogPrivateSubnetA" },
+    tags: {
+        Name: "fogPrivateSubnetA",
+    },
 });
+
 export const privateSubnetB = new aws.ec2.Subnet("fogPrivateSubnetB", {
     vpcId: fogVpc.id,
     cidrBlock: "10.0.2.0/24",
     availabilityZone: "us-east-1b",
-    tags: { Name: "fogPrivateSubnetB" },
+    tags: {
+        Name: "fogPrivateSubnetB",
+    },
 });
 
 const igw = new aws.ec2.InternetGateway("fogIgw", { 
@@ -76,7 +81,6 @@ const privateRouteTable = new aws.ec2.RouteTable("fogPrivateRouteTable", {
         routeTableId: privateRouteTable.id,
     });
 });
-
 const endpointSG = new aws.ec2.SecurityGroup("endpointSG", {
     vpcId: fogVpc.id,
     ingress: [{ protocol: "-1", fromPort: 0, toPort: 0, cidrBlocks: ["10.0.0.0/16"] }],

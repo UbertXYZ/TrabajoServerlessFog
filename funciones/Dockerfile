@@ -3,4 +3,4 @@ WORKDIR /app
 COPY . .
 RUN npm install --production
 EXPOSE 3000
-CMD ["sh", "-c", "node fog${FOG_ID}.js"]
+CMD ["sh", "-c", "node fog${FOG_ID:-01}.js"]

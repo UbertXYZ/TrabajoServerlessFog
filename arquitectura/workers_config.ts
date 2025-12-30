@@ -2,13 +2,11 @@ import * as k8s from "@pulumi/kubernetes";
 import { k8sProvider } from "./kube_config";
 import { fogImage } from "./ecr_config";
 import { cloudUrl } from "./cloud_config";
-
 const baseContainer = {
   name: "fog",
   image: fogImage.imageName,
   ports: [{ containerPort: 3000 }],
 };
-
 export const fog01 = new k8s.apps.v1.Deployment(
   "fog01",
   {
@@ -33,7 +31,6 @@ export const fog01 = new k8s.apps.v1.Deployment(
   },
   { provider: k8sProvider }
 );
-
 export const fog02 = new k8s.apps.v1.Deployment(
   "fog02",
   {

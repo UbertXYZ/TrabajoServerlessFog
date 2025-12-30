@@ -4,6 +4,7 @@ import * as path from "path";
 import * as pulumi from "@pulumi/pulumi";
 
 export const fogRepo = new aws.ecr.Repository("fogRepo", {
+  name: "fog-repo",
   forceDelete: true,
 });
 
@@ -14,7 +15,7 @@ const creds = aws.ecr.getAuthorizationTokenOutput({
 export const fogImage = new docker.Image("fogImage", {
   imageName: pulumi.interpolate`${fogRepo.repositoryUrl}:latest`,
   build: {
-    context: path.resolve(__dirname, "../../funciones"),
+    context: path.resolve(__dirname, "../funciones"),
     platform: "linux/amd64",
   },
   registry: {

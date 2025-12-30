@@ -18,4 +18,6 @@ http.createServer(async (req, res) => {
     const data = await cloud.json();
     res.end(JSON.stringify(data));
   });
-}).listen(3000);
+}).listen(3000, "0.0.0.0", () => {
+  console.log("Fog01 listening on 0.0.0.0:3000");
+});
