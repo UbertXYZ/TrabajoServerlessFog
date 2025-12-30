@@ -1,6 +1,6 @@
 import * as aws from "@pulumi/aws";
 import * as pulumi from "@pulumi/pulumi";
-import { privateSubnetIds, privateSubnetA, privateSubnetB } from "../vpc/fogvpc";
+import { publicSubnetIds, publicSubnetA, publicSubnetB } from "../vpc/fogvpc";
 
 const clusterRole = new aws.iam.Role("eksClusterRole", {
     assumeRolePolicy: aws.iam.assumeRolePolicyForPrincipal({
@@ -15,7 +15,7 @@ new aws.iam.RolePolicyAttachment("eksClusterPolicy", {
 export const fogCluster = new aws.eks.Cluster("fogcluster", {
     roleArn: clusterRole.arn,
     vpcConfig: {
-        subnetIds: privateSubnetIds,
+        subnetIds: publicSubnetIds,
         endpointPrivateAccess: true,
         endpointPublicAccess: true,
         publicAccessCidrs: ["179.6.165.206/32"],
@@ -41,7 +41,7 @@ policies.forEach((policy, i) => {
 export const fogNodeGroup = new aws.eks.NodeGroup("fognodegroup", {
     clusterName: fogCluster.name,
     nodeRoleArn: nodeGroupRole.arn,
-    subnetIds: [privateSubnetA.id, privateSubnetB.id],
+    subnetIds: [publicSubnetA.id, publicSubnetB.id],
     scalingConfig: {
         desiredSize: 2,
         minSize: 2,

@@ -93,6 +93,7 @@ const endpointSG = new aws.ec2.SecurityGroup("endpointSG", {
     egress: [{ protocol: "-1", fromPort: 0, toPort: 0, cidrBlocks: ["0.0.0.0/0"] }],
 });
 export const privateSubnetIds = [privateSubnetA.id, privateSubnetB.id];
+export const publicSubnetIds = [publicSubnetA.id, publicSubnetB.id];
 const services = ["ecr.api", "ecr.dkr", "sts", "logs"];
 services.forEach(svc => {
     new aws.ec2.VpcEndpoint(`fog-${svc}`, {
