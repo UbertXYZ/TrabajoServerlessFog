@@ -15,7 +15,8 @@ export const publicSubnetA = new aws.ec2.Subnet("fogPublicSubnetA", {
     tags: {
         Name: "fogPublicSubnetA",
         "kubernetes.io/role/elb": "1",
-     },
+    },
+    mapPublicIpOnLaunch: true,
 });
 export const publicSubnetB = new aws.ec2.Subnet("fogPublicSubnetB", {
     vpcId: fogVpc.id,
@@ -24,7 +25,8 @@ export const publicSubnetB = new aws.ec2.Subnet("fogPublicSubnetB", {
     tags: {
         Name: "fogPublicSubnetB",
         "kubernetes.io/role/elb": "1",
-     },
+    },
+    mapPublicIpOnLaunch: true,
 });
 export const privateSubnetA = new aws.ec2.Subnet("fogPrivateSubnetA", {
     vpcId: fogVpc.id,
